@@ -1,10 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { TextField, Button, Box, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ setIsLogin }) => {
+  const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+
+  const handleLogin = () => {
+    if(user && password){
+      setIsLogin(true)
+      navigate('/profile')
+    } else {
+      alert("ingresa tus credenciales")
+    }
+  }
+
   return (
-    <div>
-      
-    </div>
+    <Box 
+      display="flex" 
+      flexDirection="column" 
+      alignItems="center" 
+      justifyContent="center"
+      height="100vh"
+      gap={2}
+    >
+      <Typography variant="h4">Login</Typography>
+      <TextField
+        label="Usuario"
+        variant="outlined"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+        sx={{ backgroundColor: 'white', borderRadius: 1 }}
+      />
+      <TextField
+        label="Contraseña"
+        type="password"
+        variant="outlined"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        sx={{ backgroundColor: 'white', borderRadius: 1 }}
+      />
+
+      <Button variant="contained" onClick={handleLogin}>
+      Iniciar Sesion
+      </Button>
+    </Box>
   )
 }
 

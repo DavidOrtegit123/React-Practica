@@ -1,11 +1,11 @@
 import React from 'react'
+import { Typography, Box } from '@mui/material'
 
 const Profile = () => {
   return (
-    <div>
-        
-      
-    </div>
+    <Box p={4}>
+      <Typography variant="h4">Bienvenido al Profile</Typography>
+    </Box>
   )
 }
 
