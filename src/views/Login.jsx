@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TextField, Button, Box, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'  
+/*
 const Login = ({ setIsLogin }) => {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
@@ -46,6 +46,55 @@ const Login = ({ setIsLogin }) => {
       Iniciar Sesion
       </Button>
     </Box>
+  )
+}
+
+export default Login
+*/
+
+const Login = ({ login }) => {
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+
+  const onsubmit = async (e) => {
+    e.preventDefault()
+
+    if (!username || !password) {
+      alert('Ingresa tus credenciales')
+      return
+    }
+
+    const res = await login({
+      username,
+      password
+    })
+
+    if (res?.isLogin) {
+      navigate('/profile')
+    } else {
+      alert('Credenciales incorrectas')
+    }
+  }
+
+  return ( 
+    <>
+      <form onSubmit={onsubmit}>
+        <TextField
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <TextField
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+        />
+
+        <Button type="submit">Login</Button>
+      </form>
+    </>
   )
 }
 
